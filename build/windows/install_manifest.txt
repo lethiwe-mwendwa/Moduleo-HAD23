@@ -1,0 +1,12 @@
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/icudtl.dat
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/flutter_windows.dll
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/AssetManifest.bin
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/NOTICES
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag
+E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/Debug/data/flutter_assets/version.json

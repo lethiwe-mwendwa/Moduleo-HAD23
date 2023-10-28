@@ -1,0 +1,10 @@
+^E:\[CODE]\REPOS\MODULEO-HAD23\WINDOWS\RUNNER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SE:/[Code]/Repos/Moduleo-HAD23/windows -BE:/[Code]/Repos/Moduleo-HAD23/build/windows --check-stamp-file E:/[Code]/Repos/Moduleo-HAD23/build/windows/runner/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
