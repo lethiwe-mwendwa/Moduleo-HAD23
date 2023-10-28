@@ -137,3 +137,5 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 !.vscode/settings.json
 
+.dart_tool/flutter_build/c70096330c66c1e099b2cc036676c69b/app.dill
+.dart_tool/flutter_build/c70096330c66c1e099b2cc036676c69b/.filecache
