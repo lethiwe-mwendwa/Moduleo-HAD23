@@ -72,3 +72,38 @@ class MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class Post {
+  final int id;
+  final String description;
+
+  const Post({required this.id, required this.description});
+}
+
+class Folder {
+  final List<Folder> childfolderList;
+  final List<Post> postList;
+
+  const Folder({required this.childfolderList, required this.postList});
+}
+
+class Module {
+  final int id;
+  final String name;
+  final String description;
+  final String thumbnailPath;
+  final String pagePath;
+  final List<Folder> folderList;
+
+  // iffy data type
+  final String year;
+
+  const Module(
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.thumbnailPath,
+      required this.pagePath,
+      required this.year,
+      required this.folderList});
+}
