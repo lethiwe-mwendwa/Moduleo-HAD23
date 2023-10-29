@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'widgets/date_header_widget.dart';
+import 'widgets/grid_item_widget.dart';
+import 'widgets/bottom_nav_bar.dart';
+import 'widgets/calendar_info_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.pink,
-        ).copyWith(brightness: Brightness.dark), // Set brightness to dark
+            primarySwatch: Colors.pink, brightness: Brightness.dark),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -24,9 +26,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
+
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -41,37 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget _buildItem(BuildContext context, int index) {
-    return Card(
-      child: Center(
-        child: Text(
-          'Item $index',
-          style: Theme.of(context).textTheme.headline6,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    DateTime currentDate = DateTime.now();
-    String formattedDate = DateFormat('d MMMM').format(currentDate);
-
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                formattedDate,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            DateHeaderWidget(),
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -80,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisSpacing: 10,
                 ),
                 itemCount: _counter,
-                itemBuilder: (context, index) => _buildItem(context, index),
+                itemBuilder: (context, index) => GridItemWidget(index: index),
               ),
             ),
           ],
@@ -92,48 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).colorScheme.primary,
-        shape: CircularNotchedRectangle(),
-        child: Container(
-          height: 60.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.home),
-                onPressed: () {
-                  // Handle home button tap
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  // Handle search button tap
-                },
-              ),
-              SizedBox(width: 40.0),
-              IconButton(
-                icon: Icon(Icons.person),
-                onPressed: () {
-                  // Handle profile button tap
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomSheet: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        height: _counter > 0 ? 50 : 0,
-        color: Colors.blue,
-        child: Center(
-          child: Text(
-            'Calendar Information',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
+      bottomNavigationBar: BottomNavBar(),
+      bottomSheet: CalendarInfoWidget(isVisible: _counter > 0),
     );
   }
 }
