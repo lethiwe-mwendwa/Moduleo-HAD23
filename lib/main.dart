@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'widgets/date_header_widget.dart';
+import 'widgets/grid_item_widget.dart';
+import 'widgets/bottom_nav_bar.dart';
+import 'widgets/calendar_info_widget.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.pink, brightness: Brightness.dark),
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.pink, brightness: Brightness.dark),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -22,15 +26,15 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
   final String title;
 
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
   @override
-  State<MyHomePage> createState() => MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -39,36 +43,36 @@ class MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget _buildItem(BuildContext context, int index) {
-    return Card(
-      child: Center(
-        child: Text(
-          'Item $index',
-          style: Theme.of(context).textTheme.headline6,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, // Number of columns in the grid
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            DateHeaderWidget(),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 150,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: _counter,
+                itemBuilder: (context, index) => GridItemWidget(index: index),
+              ),
+            ),
+          ],
         ),
-        itemCount: _counter, // Number of items in the grid
-        itemBuilder: (context, index) => _buildItem(context, index),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavBar(),
+      bottomSheet: CalendarInfoWidget(isVisible: _counter > 0),
     );
   }
 }
