@@ -4,16 +4,16 @@ import 'widgets/grid_item_widget.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'widgets/calendar_info_widget.dart';
 
-void main() => runApp(MaterialApp(home: MyApp()));
+void main() => runApp(const MaterialApp(home: MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Moduleo',
         theme: _buildThemeData(),
-        home: MyHomePage(title: 'Flutter Demo Home Page'),
+        home: const MyHomePage(title: 'Moduleo'),
       );
 
   ThemeData _buildThemeData() => ThemeData(
@@ -52,11 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar: const BottomNavBar(),
         bottomSheet: const CalendarInfoWidget(),
       );
-
   Widget _buildGridView() => Expanded(
         child: LayoutBuilder(
           builder: (context, constraints) => GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 150,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,

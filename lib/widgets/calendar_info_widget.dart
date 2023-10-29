@@ -4,7 +4,7 @@ class CalendarInfoWidget extends StatelessWidget {
   const CalendarInfoWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) => const SizedBox(
         height: 50,
         child: Center(
           child: Text(

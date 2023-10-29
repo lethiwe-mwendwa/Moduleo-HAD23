@@ -13,13 +13,13 @@ class BottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               IconButton(
-                  icon: const Icon(Icons.home),
+                  icon: const Icon(Icons.calendar_month),
                   onPressed: () {/* Handle home button tap */}),
               IconButton(
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(Icons.home),
                   onPressed: () {/* Handle search button tap */}),
               IconButton(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(Icons.view_agenda),
                   onPressed: () {/* Handle profile button tap */}),
             ],
           ),
