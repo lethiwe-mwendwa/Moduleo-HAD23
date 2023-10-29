@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CalendarInfoWidget extends StatelessWidget {
-  final bool isVisible;
-
-  CalendarInfoWidget({required this.isVisible});
+  const CalendarInfoWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
-      height: isVisible ? 50 : 0,
-      color: Colors.blue,
-      child: Center(
-        child: Text(
-          'Calendar Information',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+  Widget build(BuildContext context) => Container(
+        height: 50,
+        child: Center(
+          child: Text(
+            'Calendar Information',
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0),
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

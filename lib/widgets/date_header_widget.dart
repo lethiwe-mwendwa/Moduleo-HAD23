@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DateHeaderWidget extends StatelessWidget {
+  const DateHeaderWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    DateTime currentDate = DateTime.now();
-    String formattedDate = DateFormat('d MMMM').format(currentDate);
+    final formattedDate = DateFormat('d MMMM').format(DateTime.now());
 
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Text(
         formattedDate,
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
     );
   }

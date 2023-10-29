@@ -4,30 +4,29 @@ import 'widgets/grid_item_widget.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'widgets/calendar_info_widget.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MaterialApp(home: MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+  Widget build(BuildContext context) => MaterialApp(
+        title: 'Flutter Demo',
+        theme: _buildThemeData(),
+        home: MyHomePage(title: 'Flutter Demo Home Page'),
+      );
+
+  ThemeData _buildThemeData() => ThemeData(
         colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.pink, brightness: Brightness.dark),
+          primarySwatch: Colors.grey,
+          brightness: Brightness.dark,
+        ),
         useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+      );
 }
 
 class MyHomePage extends StatefulWidget {
   final String title;
-
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
@@ -35,44 +34,42 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  int _counter = 1;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            DateHeaderWidget(),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 150,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                itemCount: _counter,
-                itemBuilder: (context, index) => GridItemWidget(index: index),
-              ),
-            ),
-          ],
+  Widget build(BuildContext context) => Scaffold(
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const DateHeaderWidget(),
+              _buildGridView(),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        floatingActionButton: _buildFloatingActionButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: const BottomNavBar(),
+        bottomSheet: const CalendarInfoWidget(),
+      );
+
+  Widget _buildGridView() => Expanded(
+        child: LayoutBuilder(
+          builder: (context, constraints) => GridView.builder(
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 150,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+            itemCount: _counter,
+            itemBuilder: (context, index) => GridItemWidget(index: index),
+          ),
+        ),
+      );
+
+  Widget _buildFloatingActionButton() => FloatingActionButton(
+        onPressed: () => setState(() => _counter++),
+        tooltip: 'Add Item',
         child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar(),
-      bottomSheet: CalendarInfoWidget(isVisible: _counter > 0),
-    );
-  }
+      );
 }
