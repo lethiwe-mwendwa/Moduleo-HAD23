@@ -7,7 +7,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,16 +27,27 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+
+  Widget _buildItem(BuildContext context, int index) {
+    return Card(
+      child: Center(
+        child: Text(
+          'Item $index',
+          style: Theme.of(context).textTheme.headline6,
+        ),
+      ),
+    );
   }
 
   @override
@@ -52,17 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisCount: 4, // Number of columns in the grid
         ),
         itemCount: _counter, // Number of items in the grid
-        itemBuilder: (context, index) {
-          // Build individual grid items here
-          return Card(
-            child: Center(
-              child: Text(
-                'Item $index',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-          );
-        },
+        itemBuilder: (context, index) => _buildItem(context, index),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
