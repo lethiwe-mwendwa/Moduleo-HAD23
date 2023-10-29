@@ -52,22 +52,66 @@ class MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime currentDate = DateTime.now();
+    String formattedDate =
+        "${currentDate.day}/${currentDate.month}/${currentDate.year}";
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, // Number of columns in the grid
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(top: 16.0),
+              child: Text(
+                formattedDate,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4, // Number of columns in the grid
+                ),
+                itemCount: _counter, // Number of items in the grid
+                itemBuilder: (context, index) => _buildItem(context, index),
+              ),
+            ),
+          ],
         ),
-        itemCount: _counter, // Number of items in the grid
-        itemBuilder: (context, index) => _buildItem(context, index),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).colorScheme.inversePrimary,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                // Handle home button tap
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                // Handle search button tap
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () {
+                // Handle profile button tap
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
